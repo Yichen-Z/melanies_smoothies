@@ -11,7 +11,13 @@ st.write(
   """
 )
 
-cnx = st.connection('snowflake')
+cnx = st.connection(
+    'snowflake_sso',
+    type='snowflake',
+    account='RLVXSGX-SDB16588',
+    user='ZHANGYICHEN9',
+    authenticator='externalbrowser'
+)
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(
     col('FRUIT_NAME')
