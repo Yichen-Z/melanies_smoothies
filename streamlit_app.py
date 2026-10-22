@@ -6,8 +6,10 @@ from snowflake.snowpark.functions import col
 cnx = st.connection('snowflake')
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(
-    col('FRUIT_NAME')
+    col('FRUIT_NAME'), col('SEARCH_ON')
 )
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop() # Because the list would break lol
 
 # Write directly to the app
 st.title(f":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
