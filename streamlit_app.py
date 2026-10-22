@@ -34,6 +34,7 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string += f'{fruit_chosen} '
         # st.write(ingredients_string)
+        st.write(fruit_chosen)
 
         lookup_statement = f"""
             select search_on
