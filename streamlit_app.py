@@ -35,8 +35,15 @@ if ingredients_list:
         ingredients_string += f'{fruit_chosen} '
         # st.write(ingredients_string)
 
+        lookup_statement = f"""
+            select search_on
+            from smoothies.public.fruit_options
+            where fruit_name = {fruit_chosen}
+        """
+        lookup_fruit = session.sql(lookup_statement).collect()
+
         st.subheader(fruit_chosen + ' Nutrition Information')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)  
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + lookup_fruit)  
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
     
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
