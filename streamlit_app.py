@@ -1,4 +1,5 @@
 # Import python packages
+import requests
 import streamlit as st
 from snowflake.snowpark.functions import col
 
@@ -19,6 +20,9 @@ st.write(
 
 name_on_order = st.text_input('Name on Smoothie:')
 # st.write('The name on your Smoothie will be:', name_on_order)
+
+smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
+st.text(smoothiefroot_response)
 
 ingredients_list = st.multiselect(
     label='Choose up to 5 ingredients:',
